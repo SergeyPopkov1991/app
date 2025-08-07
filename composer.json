@@ -1,0 +1,12 @@
+{
+    "autoload": {
+        "psr-4": {
+            "core\\": "vendor/core",
+            "app\\": "src/"
+        }
+    },
+    "require": {
+        "gabordemooij/redbean": "^5.7",
+        "altorouter/altorouter": "^2.0"
+    }
+}
