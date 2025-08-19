@@ -35,46 +35,37 @@ $(document).ready(function(){
             },
             messages: {
                 name: {
-                    required: "come on, you have a name, don't you?",
-                    minlength: "your name must consist of at least 2 characters"
+                    required: "Введите имя",
+                    minlength: "Слишком короткое имя"
                 },
-                subject: {
-                    required: "come on, you have a subject, don't you?",
-                    minlength: "your subject must consist of at least 4 characters"
-                },
-                number: {
-                    required: "come on, you have a number, don't you?",
-                    minlength: "your Number must consist of at least 5 characters"
-                },
+                               
                 email: {
-                    required: "no email, no message"
+                    required: "Введите емейл"
                 },
                 message: {
-                    required: "um...yea, you have to write something to send this form.",
-                    minlength: "thats all? really?"
+                    required: "Заполните сообщение",
+                    minlength: "Слишком короткое сообщение"
                 }
             },
             submitHandler: function(form) {
                 $(form).ajaxSubmit({
                     type:"POST",
                     data: $(form).serialize(),
-                    url:"contact_process.php",
-                    success: function() {
-                        $('#contactForm :input').attr('disabled', 'disabled');
-                        $('#contactForm').fadeTo( "slow", 1, function() {
-                            $(this).find(':input').attr('disabled', 'disabled');
-                            $(this).find('label').css('cursor','default');
-                            $('#success').fadeIn()
-                            $('.modal').modal('hide');
-		                	$('#success').modal('show');
-                        })
+                    url:"/app/post/handle",
+                    success: function($data) {
+                        console.log($data);
+                        $('#response').addClass("text-success");
+                         $('#contactForm').hide();
+                        $('#response').text('Сообщение добавлено.');
+                        setTimeout(() => {
+                                window.location.href = '/app/';
+                            }, 1500);
                     },
-                    error: function() {
-                        $('#contactForm').fadeTo( "slow", 1, function() {
-                            $('#error').fadeIn()
-                            $('.modal').modal('hide');
-		                	$('#error').modal('show');
-                        })
+                    error: function($e) {
+                      console.log($e);
+                        $('#response').addClass("text-danger");
+                        $('#response').text('Ошибка!');
+
                     }
                 })
             }

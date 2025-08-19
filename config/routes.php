@@ -8,6 +8,8 @@ $router->map('GET',  '/app/admin',           'AdminController#dashboard');
 $router->map('GET', '/app/posts/[i:id]', 'PageController#viewAction');
 $router->map('GET', '/app/[a:page]', 'PageController#simplePage');
 $router->map('GET', '/app/', 'PageController#indexAction');
+$router->map('POST', '/app/post/handle', 'PostFormController#handle');
+
 
 $match = $router->match();
 

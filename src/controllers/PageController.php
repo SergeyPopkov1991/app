@@ -18,13 +18,19 @@ class PageController
         $tpl->render('default', $contentPage, array_merge([
             'title' => $titlePage, 
         ], [
-            'posts' => $data] ));
+            'posts' => $data['posts'],'nav' => $data['nav']
+            ] ));
     }
 
     public function indexAction(): void
     {
         $db = new Database();
-        $data = $db->getAllGuestbookMessages();
+        if(isset($_GET['page'])) {
+            $page = $_GET['page'];
+        } else {
+            $page = 1;
+        }
+        $data = $db->getGuestbookPage($page);
 
         $this->renderPage(
             'pages/home',
