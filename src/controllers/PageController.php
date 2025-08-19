@@ -26,7 +26,7 @@ class PageController
     {
         $db = new Database();
         if(isset($_GET['page'])) {
-            $page = $_GET['page'];
+            $page = htmlspecialchars(strip_tags($_GET['page']), ENT_QUOTES | ENT_SUBSTITUTE, 'UTF-8');
         } else {
             $page = 1;
         }
