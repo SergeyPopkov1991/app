@@ -1,8 +1,6 @@
 <?php
 
-
 namespace app\controllers;
-
 
 class TemplateLoader
 {
@@ -15,7 +13,7 @@ class TemplateLoader
 
     public function __construct(string $templateDir = APP)
     {
-        $this->templateDir = rtrim($templateDir, '/\\') . DIRECTORY_SEPARATOR;      
+        $this->templateDir = rtrim($templateDir, '/\\') . DIRECTORY_SEPARATOR;
     }
 
     public function getPart(string $partPath, array|object $data = [], bool $is_admin = false): void

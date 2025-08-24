@@ -24,7 +24,7 @@ final class PostFormController
         $post   = $_POST;
         $server = $_SERVER;
         $errors = [];
-        
+
         // 3) CSRF
         // if (
         //     empty($_SESSION['csrf_token']) ||
@@ -73,9 +73,9 @@ final class PostFormController
         // 8) Запись в БД
         try {
             $db   = new Database();
-            $data = $db->addGuestbookMessage( $message, $name, $email, $server );
+            $data = $db->addGuestbookMessage($message, $name, $email, $server);
             $this->json($data, 200);
-        } catch (\Throwable $e) {    
+        } catch (\Throwable $e) {
             $this->json(['ok' => false, 'errors' => ['db' => 'Ошибка']], 500);
         }
     }

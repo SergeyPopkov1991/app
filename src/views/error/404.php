@@ -1,4 +1,6 @@
-<?php $this->getPart('parts/banner', $data); ?>
+<?php
+
+$this->getPart('parts/banner', $data); ?>
 <div class="container" style="padding: 5vh 0;">
     <div class="row my-5">
         <div class="col-lg-8 mb-5 mb-lg-0 mx-auto text-center">

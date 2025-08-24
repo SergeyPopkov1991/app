@@ -16,10 +16,10 @@ class PageController
     {
         $tpl = new TemplateLoader();
         $tpl->render('default', $contentPage, array_merge([
-            'title' => $titlePage, 
+            'title' => $titlePage,
         ], [
             'posts' => $data['posts'],'nav' => $data['nav']
-            ] ));
+            ]));
     }
 
     public function indexAction(): void
@@ -27,21 +27,21 @@ class PageController
         $filters = [];
 
         $db = new Database();
-        if(isset($_GET['page'])) {
+        if (isset($_GET['page'])) {
             $page = htmlspecialchars(strip_tags($_GET['page']), ENT_QUOTES | ENT_SUBSTITUTE, 'UTF-8');
         } else {
             $page = 1;
         }
-        
-        if(isset($_GET['sort_date']) && !empty($_GET['sort_date'])) {
+
+        if (isset($_GET['sort_date']) && !empty($_GET['sort_date'])) {
             $filters['created_at'] = htmlspecialchars(strip_tags($_GET['sort_date']), ENT_QUOTES | ENT_SUBSTITUTE, 'UTF-8');
         }
 
-        if(isset($_GET['sort_name']) && !empty($_GET['sort_name'])) {
+        if (isset($_GET['sort_name']) && !empty($_GET['sort_name'])) {
             $filters['username'] = htmlspecialchars(strip_tags($_GET['sort_name']), ENT_QUOTES | ENT_SUBSTITUTE, 'UTF-8');
         }
 
-        if(isset($_GET['sort_email']) && !empty($_GET['sort_email'])) {
+        if (isset($_GET['sort_email']) && !empty($_GET['sort_email'])) {
             $filters['email'] = htmlspecialchars(strip_tags($_GET['sort_email']), ENT_QUOTES | ENT_SUBSTITUTE, 'UTF-8');
         }
 
@@ -69,11 +69,11 @@ class PageController
     {
         $allowedPages = ['login', 'add']; // защита от произвольных шаблонов
 
-        if ( ! in_array( $page, $allowedPages ) ) {
+        if (! in_array($page, $allowedPages)) {
             throw new \Exception("Страница не найдена", 404);
         }
 
-        $title = match ( $page ) {
+        $title = match ($page) {
             'login' => 'Логин',
             'add'   => 'Добавить запись',
             default => 'Страница',
@@ -83,7 +83,5 @@ class PageController
         $tpl->render('default', 'pages/' . $page, [
             'title' => $title,
         ]);
-
     }
-
 }

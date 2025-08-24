@@ -8,5 +8,8 @@
     "require": {
         "gabordemooij/redbean": "^5.7",
         "altorouter/altorouter": "^2.0"
+    },
+    "require-dev": {
+        "squizlabs/php_codesniffer": "^3.13"
     }
 }

@@ -1,4 +1,4 @@
-<?php $this->getPart('parts/header' ); ?>
+<?php $this->getPart('parts/header'); ?>
 
 <main>
     <?php if (!empty($__content_file) && file_exists($__content_file)) {

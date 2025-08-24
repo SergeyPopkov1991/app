@@ -1,4 +1,5 @@
 <?php
+
 $data['title'] = 'Second divided from form fish beast made every of seas all gathered us saying he our';
 $this->getPart('parts/banner', $data);
 ?>

@@ -22,24 +22,24 @@ class Database
     public function getGuestbookPage(int $page = 1, array $filters = [], int $perPage = 5): array
     {
         $page    = max(1, $page);
-        $perPage = max(1, min(100, $perPage)); 
+        $perPage = max(1, min(100, $perPage));
         $offset  = ($page - 1) * $perPage;
-       
-        foreach($filters as $field => $dir) {
+
+        foreach ($filters as $field => $dir) {
             $direction = strtoupper($dir) === 'ASC' ? 'ASC' : 'DESC';
             $parts[] = "$field $direction";
         }
-        
+
         $total = (int) R::count('guestbook');
 
-        $orderSql = empty($parts) ? 'created_at DESC' : implode(', ' , $parts);
-        
-       
+        $orderSql = empty($parts) ? 'created_at DESC' : implode(', ', $parts);
+
+
         $items = R::findAll(
             'guestbook',
             "ORDER BY $orderSql LIMIT $offset, $perPage"
         );
-       
+
         $pages = (int) ceil($total / $perPage);
 
         $nav = array(
@@ -48,8 +48,8 @@ class Database
             'perPage' => $perPage
         );
 
-        $data= ['posts'=> $items, 'nav'=> $nav];
-        
+        $data = ['posts' => $items, 'nav' => $nav];
+
 
         return $data;
 
@@ -81,7 +81,8 @@ class Database
         // ];
     }
 
-    public function addGuestbookMessage( $message, $name, $email, $server ) {
+    public function addGuestbookMessage($message, $name, $email, $server)
+    {
         // Метаданные
         $ip        = HelpersController::clientIp($server);
         $userAgent = substr((string)($server['HTTP_USER_AGENT'] ?? ''), 0, 255);
@@ -95,7 +96,7 @@ class Database
             $entry->username   = $name;
             $entry->email      = mb_strtolower($email);
             $entry->ip_address = $ip;
-            $entry->user_agent = $userAgent; 
+            $entry->user_agent = $userAgent;
             // $entry->created_at  = $createdAt;
 
             $id = (int) R::store($entry);
@@ -107,5 +108,4 @@ class Database
             return ['ok' => false, 'errors' => ['db' => 'Ошибка БД'], 'id' => null];
         }
     }
-
 }

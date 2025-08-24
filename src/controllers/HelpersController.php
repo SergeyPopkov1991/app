@@ -2,8 +2,8 @@
 
 namespace app\controllers;
 
-class HelpersController { 
-   
+class HelpersController
+{
     public static function clientIp(array $server): string
     {
         foreach (['HTTP_CLIENT_IP', 'HTTP_X_FORWARDED_FOR', 'REMOTE_ADDR'] as $k) {
