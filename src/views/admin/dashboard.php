@@ -47,6 +47,9 @@
                     </thead>
                     <tbody>
                         <?php
+                        // echo '<pre>';
+                        //  var_dump($data);
+                        //  echo '</pre>';
                             foreach ($data['posts'] as $row) {
                                 $this->getPart('parts/article', $row, true);
                             }
@@ -56,22 +59,21 @@
 
                 <nav class="blog-pagination justify-content-center d-flex">
                     <ul class="pagination">
-                        <li class="page-item">
-                            <a href="#" class="page-link" aria-label="Previous">
-                                <i class="ti-angle-left"></i>
-                            </a>
+                        <?php 
+                        $i = 1;
+                        $nav = $data['nav'];
+                        $pages = $nav['pages'];
+                        $page = $nav['page'];
+                        while($i<= $pages) : 
+                        ?>
+                        <li class="page-item <?php if($i == $page) echo "active"; ?>">
+                            <a href="<?php echo PATH . '?page=' . $i; ?>" class="page-link"><?php echo $i; ?></a>
                         </li>
-                        <li class="page-item">
-                            <a href="#" class="page-link">1</a>
-                        </li>
-                        <li class="page-item active">
-                            <a href="#" class="page-link">2</a>
-                        </li>
-                        <li class="page-item">
-                            <a href="#" class="page-link" aria-label="Next">
-                                <i class="ti-angle-right"></i>
-                            </a>
-                        </li>
+                        <?php 
+                        $i++;
+                        endwhile;
+                        ?>
+                       
                     </ul>
                 </nav>
 

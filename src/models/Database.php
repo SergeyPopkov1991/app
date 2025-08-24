@@ -19,21 +19,27 @@ class Database
         return R::findAll('guestbook', 'ORDER BY created_at DESC');
     }
 
-    public function getGuestbookPage(int $page = 1, int $perPage = 5): array
+    public function getGuestbookPage(int $page = 1, array $filters = [], int $perPage = 5): array
     {
         $page    = max(1, $page);
         $perPage = max(1, min(100, $perPage)); 
         $offset  = ($page - 1) * $perPage;
-
+       
+        foreach($filters as $field => $dir) {
+            $direction = strtoupper($dir) === 'ASC' ? 'ASC' : 'DESC';
+            $parts[] = "$field $direction";
+        }
+        
         $total = (int) R::count('guestbook');
 
-        // 2) Получаем нужную страницу
-
+        $orderSql = empty($parts) ? 'created_at DESC' : implode(', ' , $parts);
+        
+       
         $items = R::findAll(
             'guestbook',
-            "ORDER BY created_at DESC LIMIT $offset, $perPage"
+            "ORDER BY $orderSql LIMIT $offset, $perPage"
         );
-
+       
         $pages = (int) ceil($total / $perPage);
 
         $nav = array(

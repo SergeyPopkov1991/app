@@ -24,13 +24,29 @@ class PageController
 
     public function indexAction(): void
     {
+        $filters = [];
+
         $db = new Database();
         if(isset($_GET['page'])) {
             $page = htmlspecialchars(strip_tags($_GET['page']), ENT_QUOTES | ENT_SUBSTITUTE, 'UTF-8');
         } else {
             $page = 1;
         }
-        $data = $db->getGuestbookPage($page);
+        
+        if(isset($_GET['sort_date']) && !empty($_GET['sort_date'])) {
+            $filters['created_at'] = htmlspecialchars(strip_tags($_GET['sort_date']), ENT_QUOTES | ENT_SUBSTITUTE, 'UTF-8');
+        }
+
+        if(isset($_GET['sort_name']) && !empty($_GET['sort_name'])) {
+            $filters['username'] = htmlspecialchars(strip_tags($_GET['sort_name']), ENT_QUOTES | ENT_SUBSTITUTE, 'UTF-8');
+        }
+
+        if(isset($_GET['sort_email']) && !empty($_GET['sort_email'])) {
+            $filters['email'] = htmlspecialchars(strip_tags($_GET['sort_email']), ENT_QUOTES | ENT_SUBSTITUTE, 'UTF-8');
+        }
+
+
+        $data = $db->getGuestbookPage($page, $filters);
 
         $this->renderPage(
             'pages/home',
