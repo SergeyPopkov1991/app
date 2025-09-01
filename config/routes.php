@@ -2,13 +2,13 @@
 
 use app\controllers\TemplateLoader;
 
-$router->map('GET',  '/app/admin/logout',    'AdminController#logout');
-$router->map('GET',  '/app/admin',           'AdminController#dashboard');
+$router->map('GET',  '/admin/logout',    'AdminController#logout');
+$router->map('GET',  '/admin',           'AdminController#dashboard');
 
-$router->map('GET', '/app/posts/[i:id]', 'PageController#viewAction');
-$router->map('GET', '/app/[a:page]', 'PageController#simplePage');
-$router->map('GET', '/app/', 'PageController#indexAction');
-$router->map('POST', '/app/post/handle', 'PostFormController#handle');
+$router->map('GET', '/posts/[i:id]', 'PageController#viewAction');
+$router->map('GET', '/[a:page]', 'PageController#simplePage');
+$router->map('GET', '/', 'PageController#indexAction');
+$router->map('POST', '/post/handle', 'PostFormController#handle');
 
 
 $match = $router->match();

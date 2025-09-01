@@ -1,0 +1,61 @@
+services:
+  app:
+    build:
+      context: .
+      dockerfile: docker/php/Dockerfile
+    container_name: php-app
+    ports:
+      - "8000:80"
+    working_dir: /var/www/html
+    volumes:
+      - ./:/var/www/html
+    environment:
+      # Пробрасываем переменные окружения в PHP (ваш код читает их из $_ENV/$_SERVER или .env)
+      APP_ENV: local
+      DB_HOST: mysql
+      DB_PORT: "3306"
+      DB_DATABASE: appdb
+      DB_USERNAME: appuser
+      DB_PASSWORD: apppass
+    depends_on:
+      mysql:
+        condition: service_healthy
+
+  mysql:
+    image: mysql:8.0
+    container_name: mysql-db
+    command: --default-authentication-plugin=mysql_native_password
+    ports:
+      - "3307:3306"  # внешний порт 3307 -> контейнерный 3306 (чтобы не конфликтовать с XAMPP)
+    environment:
+      MYSQL_ROOT_PASSWORD: rootpass
+      MYSQL_DATABASE: appdb
+      MYSQL_USER: appuser
+      MYSQL_PASSWORD: apppass
+    volumes:
+      - db_data:/var/lib/mysql
+      - ./docker/mysql/init:/docker-entrypoint-initdb.d
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "127.0.0.1", "-prootpass"]
+      interval: 5s
+      timeout: 3s
+      retries: 20
+
+  phpmyadmin:
+    image: phpmyadmin:latest
+    container_name: phpmyadmin
+    depends_on:
+      mysql:
+        condition: service_healthy
+    environment:
+      PMA_HOST: mysql
+      PMA_PORT: 3306
+      UPLOAD_LIMIT: 256M
+      # (опционально) сразу логиниться как root:
+      PMA_USER: root
+      PMA_PASSWORD: rootpass
+    ports:
+      - "8080:80"
+
+volumes:
+  db_data:

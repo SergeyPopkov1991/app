@@ -14,7 +14,7 @@ class AdminController
     protected function restrictIfNotAdmin()
     {
         // if ( ! $this->isAdmin()) {
-        //     header('Location: /app/login');
+        //     header('Location: /login');
         //     exit;
         // }
     }
@@ -69,7 +69,7 @@ class AdminController
     public function logout()
     {
         session_destroy();
-        header('Location: /app/login');
+        header('Location: /login');
         exit;
     }
 }

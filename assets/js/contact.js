@@ -51,14 +51,14 @@ $(document).ready(function(){
                 $(form).ajaxSubmit({
                     type:"POST",
                     data: $(form).serialize(),
-                    url:"/app/post/handle",
+                    url:"/post/handle",
                     success: function($data) {
                         console.log($data);
                         $('#response').addClass("text-success");
                          $('#contactForm').hide();
                         $('#response').text('Сообщение добавлено.');
                         setTimeout(() => {
-                                window.location.href = '/app/';
+                                window.location.href = '/';
                             }, 1500);
                     },
                     error: function($e) {

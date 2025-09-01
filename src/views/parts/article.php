@@ -32,12 +32,12 @@
     <th scope="row">07.07.2025</th>
     <th scope="row"><?= $username; ?></th>
     <th scope="row"><?= $email; ?></th>
-    <td><a class="d-inline-block" href="/app/posts/1">
+    <td><a class="d-inline-block" href="/posts/1">
             <?= $message; ?>
         </a>
     </td>
     <?php if (! $is_admin) : ?>
-        <td><a class="d-inline-block" href="/app/posts/1">
+        <td><a class="d-inline-block" href="/posts/1">
                 Посмотреть
             </a>
         </td>

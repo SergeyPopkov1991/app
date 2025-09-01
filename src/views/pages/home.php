@@ -3,7 +3,7 @@
     <div class="container">
         <div class="row mb-5">
             <div class="col-12 mb-5 mb-lg-0 mx-auto">
-                <h2 class="pb-3"><a href="/app/add" class="boxed-btn btn btn-info">Добавить новую запись</a></h2>
+                <h2 class="pb-3"><a href="/add" class="boxed-btn btn btn-info">Добавить новую запись</a></h2>
             </div>
         </div>
         <form method="GET" class="row mb-5">
@@ -56,29 +56,9 @@
                         ?>
                     </tbody>
                 </table>
-
-                <nav class="blog-pagination justify-content-center d-flex">
-                    <ul class="pagination">
-                        <?php
-                        $i = 1;
-                        $nav = $data['nav'];
-                        $pages = $nav['pages'];
-                        $page = $nav['page'];
-                        while ($i <= $pages) :
-                            ?>
-                        <li class="page-item <?php if ($i == $page) {
-                            echo "active";
-                                             } ?>">
-                            <a href="<?php echo PATH . '?page=' . $i; ?>" class="page-link"><?php echo $i; ?></a>
-                        </li>
-                            <?php
-                            $i++;
-                        endwhile;
-                        ?>
-                       
-                    </ul>
-                </nav>
-
+                <?php
+                     $this->getPart('parts/paginations', $data['nav']);
+                ?>
             </div>
         </div>
     </div>

@@ -8,7 +8,7 @@
                    <h4 id="response" ></h4>
                </div>
                <div class="col-lg-12">
-                   <form class="form-contact contact_form" action="/app/post/handle" method="post" id="contactForm" novalidate="novalidate">
+                   <form class="form-contact contact_form" action="/post/handle" method="post" id="contactForm" novalidate="novalidate">
                        <div class="row">
                           
                            <div class="col-12">

@@ -3,7 +3,7 @@
     <div class="container">
         <div class="row mb-5">
             <div class="col-12 mb-5 mb-lg-0 mx-auto">
-                <h2 class="pb-3"><a href="/app/admin/logout" class="boxed-btn btn btn-info">Выйти</a></h2>
+                <h2 class="pb-3"><a href="/admin/logout" class="boxed-btn btn btn-info">Выйти</a></h2>
             </div>
         </div>
         <form method="GET" class="row mb-5">

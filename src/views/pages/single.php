@@ -22,7 +22,7 @@ $this->getPart('parts/banner', $data);
                 </div>
 
                 <div class="comment-form">
-                    <h4><a href="/app/">
+                    <h4><a href="/">
                             < Вернуться к списку</a>
                     </h4>
                 </div>

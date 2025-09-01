@@ -9,7 +9,11 @@ class Database
 {
     public function __construct()
     {
-        R::setup('mysql:host=localhost;dbname=app', 'root', '');
+         R::setup(
+            'mysql:host=' . getenv('DB_HOST') . ';port=' . getenv('DB_PORT') . ';dbname=' . getenv('DB_DATABASE'),
+            getenv('DB_USERNAME'),
+            getenv('DB_PASSWORD')
+        );
         R::ext('xdispense', fn($type) => \R::getRedBean()->dispense($type));
         R::freeze(false);
     }

@@ -48,7 +48,7 @@ use app\View;
                             <div class="header_wrap d-flex justify-content-between align-items-center">
                                 <div class="header_left">
                                     <div class="logo">
-                                        <a href="/app">
+                                        <a href="/">
                                             <img src="<?php echo  PATH . 'assets/'; ?>img/logo.png" alt="">
                                         </a>
                                     </div>
@@ -58,7 +58,7 @@ use app\View;
                                     </div>
                                     <div class="Appointment">
                                         <div class="book_btn d-none d-lg-block">
-                                            <a href="/app/admin">Admin Login</a>
+                                            <a href="/admin">Admin Login</a>
                                         </div>
                                     </div>
                                 </div>

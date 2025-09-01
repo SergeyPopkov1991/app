@@ -5,7 +5,7 @@ $this->getPart('parts/banner', $data); ?>
     <div class="row my-5">
         <div class="col-lg-8 mb-5 mb-lg-0 mx-auto text-center">
             <svg height="200px" style="padding-bottom: 50px; fill-rule:evenodd;clip-rule:evenodd;stroke-linejoin:round;stroke-miterlimit:1.41421;" version="1.1" viewBox="0 0 1062 1062" width="100%" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><circle cx="531.308" cy="531.308" id="circle6" r="531.308" style="fill:rgb(37,183,211);"/><path d="M531.308,137.339L919.446,802.011L143.17,802.011L531.308,137.339Z" style="fill:rgb(208,52,54);"/><circle cx="531.308" cy="689.744" r="55.0304" style="fill:white;"/><path d="M572.115,329.127C572.115,310.12 556.708,294.712 537.701,294.712L524.915,294.712C505.908,294.712 490.501,310.12 490.501,329.127L490.501,557.454C490.501,576.46 505.908,591.868 524.915,591.868L537.701,591.868C556.708,591.868 572.115,576.46 572.115,557.454L572.115,329.127Z" style="fill:white;"/></svg>
-            <h2 class="pb-3"><a href="/app" class="boxed-btn btn btn-info">На главную</a></h2>
+            <h2 class="pb-3"><a href="/" class="boxed-btn btn btn-info">На главную</a></h2>
         </div>
     </div>
 </div>
